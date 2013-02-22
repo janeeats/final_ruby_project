@@ -1,24 +1,24 @@
 class Artist
   attr_accessor :name, :songs, :genres
 
-  @artists = []
+  @@artists = []
 
   def initialize
-    @artists << self
+    @@artists << self
     @songs = []
     @genres = []
   end
 
   def self.count
-    @artists.length
+    @@artists.length
   end
 
   def self.reset_artists
-    @artists = []
+    @@artists = []
   end
 
   def self.all
-    @artists
+    @@artists
   end
 
   def songs_count
@@ -32,16 +32,11 @@ class Artist
 
   def add_song(song)
     self.songs << song
-    self.add_genre(song)
-    song.genre.artists << self unless song.genre.artists.include?(self)
-  end
-
-  def self.artist_with_genre(genre)
-    a_genres_artists = []
-    @artists.each do |artist|
-      a_genres_artists << artist if (artist.songs.select {|song| song.genre == genre}).length > 0
+    if song.genre != nil
+      self.add_genre(song)
+      song.genre.artists << self unless song.genre.artists.include?(self)
+    else
     end
-    a_genres_artists
   end
 
 end

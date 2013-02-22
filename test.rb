@@ -98,7 +98,6 @@ test 'a song can be added to an artist' do
   artist = Artist.new
   song = Song.new
   artist.add_song(song)
-
   assert artist.songs.include?(song)
 end
 
