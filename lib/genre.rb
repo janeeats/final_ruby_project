@@ -1,8 +1,12 @@
 class Genre
-  attr_accessor :name, :songs
+  attr_accessor :name
 
-  def initialize
-    @songs = []
+  def songs
+    Song.songs_with_genre(self)
+  end
+
+  def artists
+    Artist.artist_with_genre(self)
   end
 
 end

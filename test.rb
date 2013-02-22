@@ -4,6 +4,7 @@ path = File.dirname(path)
 require "#{path}/lib/artist.rb"
 require "#{path}/lib/genre.rb"
 require "#{path}/lib/song.rb"
+require 'pry'
 
 def test(title, &b)
   begin
@@ -133,18 +134,18 @@ test 'A genre has many songs' do
   assert_equal genre.songs.count, 2
 end
 
-# test 'A genre has many artists' do
-#   genre = Genre.new.tap{|g| g.name = 'rap'}
+test 'A genre has many artists' do
+  genre = Genre.new.tap{|g| g.name = 'rap'}
 
-#   [1,2].each do
-#     artist = Artist.new
-#     song = Song.new
-#     song.genre = genre
-#     artist.add_song(song)
-#   end
+  [1,2].each do
+    artist = Artist.new
+    song = Song.new
+    song.genre = genre
+    artist.add_song(song)
+  end
 
-#   assert_equal genre.artists.count, 2
-# end
+  assert_equal genre.artists.count, 2
+end
 
 # test 'A genres Artists are unique' do
 #   genre = Genre.new.tap{|g| g.name = 'rap'}
@@ -237,3 +238,6 @@ test 'A song has an artist'
 
 # Extra Credit:
 # Use a ruby module somewhere to refactor common functionality.
+
+
+binding.pry
